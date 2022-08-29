@@ -44,17 +44,22 @@ nav li {
 	padding: 16px 12px;
 }
 
-nav a {
-	text-decoration: none;
-	color: inherit;
-	magin: 5px 0;
-	padding: 0 12px;
-	border-bottom: 3px solid transparent;
-	transition: 1s;
+nav a , .logout {
+   text-decoration: none;
+   color: inherit;
+   magin: 5px 0;
+   padding: 0 12px;
+   border : none;
+   border-bottom: 3px solid transparent;
+   transition: 1s;
 }
 
-nav a:hover {
-	border-bottom: 3px solid #ddd
+nav a {
+padding-bottom: 2px;
+}
+
+nav a:hover, .logout:hover {
+   border-bottom: 3px solid yellow
 }
 
 nav li:nth-of-type(4) {
@@ -67,6 +72,14 @@ nav li:nth-of-type(1) {
 
 nav li:last-of-type {
 	margin-right: 30px;
+}
+
+.logout {
+	display: inline-block;
+	box-sizing: border-box !important;
+	background-color: inherit;
+	cursor: pointer;
+	margin-bottom: -4px;
 }
 
 .rows {
@@ -82,10 +95,10 @@ section.main {
 }
 
 header {
-	padding: 1.2rem;
+	padding: 7.2rem;
 	text-align: center;
-	background-color: rgb(193, 226, 237);
-	color: none;
+	background-color: none;
+	color: white;
 	font-weight: 900;
 	background-image: url("${rootPath}/static/image0001.jpg");
 	background-repeat: no-repeat;
@@ -113,22 +126,24 @@ footer {
 <body>
 	<nav>
 		<ul>
-			<li><a href="${rootPath}/lunch/get">식단표</a></li>
+			<li><a href="${rootPath}/">식단표</a></li>
 
-			<sec:authorize access="permitAll()">
+			<sec:authorize access="isAnonymous()">
 				<li><a href="${rootPath}/user/login">로그인</a></li>
 				<li><a href="${rootPath}/user/join">회원가입</a></li>
 			</sec:authorize>
 
 			<sec:authorize access="isAuthenticated()">
-				<li><a href="${rootPath}/">로그아웃</a></li>
+				<li><form:form action="${rootPath}/logout">
+						<button class="logout">로그아웃</button>
+					</form:form></li>
 				<li><a href="${rootPath}/user/mypage">myPage</a></li>
 			</sec:authorize>
 		</ul>
 	</nav>
 	<div class="rows">
 		<header>
-			<h1>운암중학교 어떤급식</h1>
+			<h1>어떤급식</h1>
 		</header>
 
 		<section class="main w3-container">
@@ -145,7 +160,9 @@ footer {
 				<c:otherwise>
 					<article class="welcome">
 						<h1>운암중학교 중식 식단표</h1>
-						<p>별점을 남기려면 로그인 해 주세요</p>
+						<sec:authorize access="isAnonymous()">
+							<p>별점을 남기려면 로그인 해 주세요</p>
+						</sec:authorize>
 						<table class="LUNCHS w3-table-all w3-margin">
 							<tr>
 								<th>날짜</th>
