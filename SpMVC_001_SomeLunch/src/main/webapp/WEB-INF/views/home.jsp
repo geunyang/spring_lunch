@@ -62,7 +62,7 @@ nav a:hover, .logout:hover {
    border-bottom: 3px solid yellow
 }
 
-nav li:nth-of-type(4) {
+nav li:nth-of-type(2) {
 	margin-left: auto;
 }
 
@@ -137,7 +137,7 @@ footer {
 				<li><form:form action="${rootPath}/logout">
 						<button class="logout">로그아웃</button>
 					</form:form></li>
-				<li><a href="${rootPath}/user/mypage">myPage</a></li>
+				<li><a href="${rootPath}/user/mypage">MYPAGE</a></li>
 			</sec:authorize>
 		</ul>
 	</nav>
@@ -159,7 +159,7 @@ footer {
 
 				<c:otherwise>
 					<article class="welcome">
-						<h1>운암중학교 중식 식단표</h1>
+						<h1>운암중학교 2022년 2학기 중식 식단표</h1>
 						<sec:authorize access="isAnonymous()">
 							<p>별점을 남기려면 로그인 해 주세요</p>
 						</sec:authorize>

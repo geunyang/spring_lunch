@@ -44,25 +44,25 @@ nav li {
 	padding: 16px 12px;
 }
 
-nav a , .logout {
-   text-decoration: none;
-   color: inherit;
-   magin: 5px 0;
-   padding: 0 12px;
-   border : none;
-   border-bottom: 3px solid transparent;
-   transition: 1s;
+nav a, .logout {
+	text-decoration: none;
+	color: inherit;
+	magin: 5px 0;
+	padding: 0 12px;
+	border: none;
+	border-bottom: 3px solid transparent;
+	transition: 1s;
 }
 
 nav a {
-padding-bottom: 2px;
+	padding-bottom: 2px;
 }
 
 nav a:hover, .logout:hover {
-   border-bottom: 3px solid yellow
+	border-bottom: 3px solid yellow
 }
 
-nav li:nth-of-type(4) {
+nav li:nth-of-type(2) {
 	margin-left: auto;
 }
 
@@ -111,6 +111,42 @@ a {
 	text-decoration: none;
 }
 
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+
 footer {
 	background-color: orange;
 	color: white;
@@ -133,7 +169,7 @@ footer {
 				<li><form:form action="${rootPath}/logout">
 						<button class="logout">로그아웃</button>
 					</form:form></li>
-				<li><a href="${rootPath}/user/mypage">myPage</a></li>
+				<li><a href="${rootPath}/user/mypage">MYPAGE</a></li>
 			</sec:authorize>
 		</ul>
 	</nav>
@@ -164,8 +200,38 @@ footer {
 						<th>영양정보</th>
 						<td>${LUNCH.NTR_INFO}</td>
 					</tr>
+					<tr>
+						<th>알러지정보</th>
+						<td>요리명에 표시된 번호를 확인하세요.<br>1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두,
+							6.밀, 7.고등어, 8.게, <br>9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산염,
+							<br>14.호두, 15.닭고기, 16.쇠고기, 17.오징어, 18.조개류(굴,전복,홍합 등)
+						</td>
+					</tr>
 				</table>
 			</div>
+
+		 	<form class="mb-3" name="myform" id="myform" method="post">
+				<fieldset>
+					<span class="text-bold">식단의 별점을 선택해주세요</span>
+					<input type="radio" name="reviewStar" value="5" id="rate1"><label
+						for="rate1">★</label>
+					<input type="radio" name="reviewStar" value="4" id="rate2"><label
+						for="rate2">★</label>
+					<input type="radio" name="reviewStar" value="3" id="rate3"><label
+						for="rate3">★</label>
+					<input type="radio" name="reviewStar" value="2" id="rate4"><label
+						for="rate4">★</label>
+					<input type="radio" name="reviewStar" value="1" id="rate5"><label
+						for="rate5">★</label>
+				</fieldset>
+<!-- 				
+				<div>
+					<textarea class="col-auto form-control" type="text" id="reviewContents"
+							  placeholder="좋은 수강평을 남겨주시면 Cocolo에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
+				</div>
+				 -->
+			</form>								
+
 		</section>
 	</div>
 	<footer class="main">
