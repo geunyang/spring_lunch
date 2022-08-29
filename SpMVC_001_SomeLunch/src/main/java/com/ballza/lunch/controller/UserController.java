@@ -30,8 +30,7 @@ public class UserController {
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String join(UserVO userVO) {
 		
-		log.debug("회원가입 : {} {}",userVO, userVO);
-		log.debug("회원가입 : " + userVO.toString());
+		log.debug("회원가입정보 : {}", userVO);
 		
 		userService.insert(userVO);
 		

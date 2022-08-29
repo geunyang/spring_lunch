@@ -43,13 +43,13 @@ header {
 	padding: 1.2rem;
 	text-align: center;
 	background-color: rgb(193, 226, 237);
-	color: rgb(47.41, 41);
+	color: none;
 	font-weight: 900;
-	background-image: url("${rootPath}/static/image0001.jpg");
+	background-image: url("${rootPath}/static/image0002.jpg");
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-attachment: fixed;
-	background-size: 100% 100%;
+	background-size: contain;
 }
 
 a {
@@ -67,7 +67,7 @@ footer {
 <body>
 	<div class="rows">
 		<header>
-			<h1>환영합니다 어떤급식 입니다</h1>
+			<h1>운암중학교 어떤급식</h1>
 		</header>
 		<section class="w3-container">
 			<div>

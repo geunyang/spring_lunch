@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set value="${pageContext.request.contextPath }" var="rootPath" />
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +30,45 @@ body {
 	height: 100%;
 }
 
+nav {
+	background-color: orange;
+	color: white;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+}
+
+nav li {
+	padding: 16px 12px;
+}
+
+nav a {
+	text-decoration: none;
+	color: inherit;
+	magin: 5px 0;
+	padding: 0 12px;
+	border-bottom: 3px solid transparent;
+	transition: 1s;
+}
+
+nav a:hover {
+	border-bottom: 3px solid #ddd
+}
+
+nav li:nth-of-type(4) {
+	margin-left: auto;
+}
+
+nav li:nth-of-type(1) {
+	margin-left: 20px;
+}
+
+nav li:last-of-type {
+	margin-right: 30px;
+}
+
 .rows {
 	/* 	width: inherit;
 	height: inherit; */
@@ -43,13 +85,13 @@ header {
 	padding: 1.2rem;
 	text-align: center;
 	background-color: rgb(193, 226, 237);
-	color: rgb(47.41, 41);
+	color: none;
 	font-weight: 900;
 	background-image: url("${rootPath}/static/image0001.jpg");
 	background-repeat: no-repeat;
 	background-position: left center;
 	background-attachment: fixed;
-	background-size: 100% 100%;
+	background-size: contain;
 }
 
 a {
@@ -69,23 +111,56 @@ footer {
 </script>
 </head>
 <body>
+	<nav>
+		<ul>
+			<li><a href="${rootPath}/lunch/get">식단표</a></li>
+
+			<sec:authorize access="permitAll()">
+				<li><a href="${rootPath}/user/login">로그인</a></li>
+				<li><a href="${rootPath}/user/join">회원가입</a></li>
+			</sec:authorize>
+
+			<sec:authorize access="isAuthenticated()">
+				<li><a href="${rootPath}/">로그아웃</a></li>
+				<li><a href="${rootPath}/user/mypage">myPage</a></li>
+			</sec:authorize>
+		</ul>
+	</nav>
 	<div class="rows">
 		<header>
-			<h1>환영합니다 어떤급식 입니다</h1>
+			<h1>운암중학교 어떤급식</h1>
 		</header>
+
 		<section class="main w3-container">
-			<table class="LUNCHS w3-table-all w3-margin">
-				<tr>
-					<th>날짜</th>
-					<th>메뉴</th>
-				</tr>
-				<c:forEach items="${LUNCHS}" var="LUNCH">
-					<tr data-mlsv_ymd="${LUNCH.MLSV_YMD}">
-						<td>${LUNCH.MLSV_YMD}</td>
-						<td>${LUNCH.DDISH_NM}</td>
-					</tr>
-				</c:forEach>
-			</table>
+			<c:choose>
+				<c:when test="${LAYOUT == 'JOIN' }">
+					<%@ include file="/WEB-INF/views/user/join.jsp"%>
+				</c:when>
+				<c:when test="${LAYOUT == 'LOGIN' }">
+					<%@ include file="/WEB-INF/views/user/login.jsp"%>
+				</c:when>
+
+
+
+				<c:otherwise>
+					<article class="welcome">
+						<h1>운암중학교 중식 식단표</h1>
+						<p>별점을 남기려면 로그인 해 주세요</p>
+						<table class="LUNCHS w3-table-all w3-margin">
+							<tr>
+								<th>날짜</th>
+								<th>메뉴</th>
+							</tr>
+							<c:forEach items="${LUNCHS}" var="LUNCH">
+								<tr data-mlsv_ymd="${LUNCH.MLSV_YMD}">
+									<td>${LUNCH.MLSV_YMD}</td>
+									<td>${LUNCH.DDISH_NM}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</article>
+				</c:otherwise>
+			</c:choose>
 		</section>
 	</div>
 	<footer class="main">

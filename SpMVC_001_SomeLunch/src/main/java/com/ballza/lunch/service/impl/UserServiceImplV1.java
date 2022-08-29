@@ -21,7 +21,7 @@ public class UserServiceImplV1 implements UserService{
 	
 	
 	@Autowired
-	private PasswordEncoder passEncoder;
+	private PasswordEncoder passwordEncoder;
 	
 	// 자동실행꼼수
 	// BeanService 클래스로 이동
@@ -109,7 +109,7 @@ public class UserServiceImplV1 implements UserService{
 			vo.setEnabled(false);
 		}
 		// 회원정보 비밀번호 암호화 하기
-		String encPassword = passEncoder.encode(vo.getPassword());
+		String encPassword = passwordEncoder.encode(vo.getPassword());
 		// 평문의 비밀번호를 뽑아서 encode에 보내 암호화 시켜 변수에 담고 다시한번 원래의 비밀번호와 교체
 		/*
 		 * vo 에 담긴 평문 password 를 get 하여
