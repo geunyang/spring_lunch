@@ -17,7 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class HomeController {
-	
+
+	/*
 	private LunchService lunchService;
 	
 	
@@ -33,6 +34,12 @@ public class HomeController {
 
 		model.addAttribute("LUNCHS", lunchs);
 
+		return "home";
+	}
+	*/
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
 		return "home";
 	}
 	

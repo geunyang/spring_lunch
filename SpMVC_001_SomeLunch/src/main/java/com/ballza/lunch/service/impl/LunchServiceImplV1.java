@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.ballza.lunch.config.LunchConfig;
 import com.ballza.lunch.model.LunchRow;
 import com.ballza.lunch.model.MealServiceDietInfo;
+import com.ballza.lunch.model.SearchVO;
 import com.ballza.lunch.service.LunchService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LunchServiceImplV1 implements LunchService{
 	
 	@Override
-	public String queryString(String search) {
+	public String queryString(SearchVO search) {
 		String queryString = LunchConfig.API_FULL_URL;
 		String encodeParams = null;
 
@@ -41,19 +42,19 @@ public class LunchServiceImplV1 implements LunchService{
 			encodeParams += "=1";
 			
 			encodeParams += "&" + URLEncoder.encode("pSize","UTF-8");
-			encodeParams += "=100";
+			encodeParams += "=1000";
 			
 			encodeParams += "&" + URLEncoder.encode("ATPT_OFCDC_SC_CODE","UTF-8");
-			encodeParams += "=F10";
+			encodeParams += "=" + search.getSc_code();
 			
 			encodeParams += "&" + URLEncoder.encode("SD_SCHUL_CODE","UTF-8");
-			encodeParams += "=7391127";
+			encodeParams += "=" + search.getSc_num();
 			
 			encodeParams += "&" + URLEncoder.encode("MLSV_FROM_YMD","UTF-8");
-			encodeParams += "=202208";
+			encodeParams += "=" + search.getSdate();
 			
 			encodeParams += "&" + URLEncoder.encode("MLSV_TO_YMD","UTF-8");
-			encodeParams += "=202212";
+			encodeParams += "=" + search.getEdate();
 
 			
 		} catch (UnsupportedEncodingException e) {

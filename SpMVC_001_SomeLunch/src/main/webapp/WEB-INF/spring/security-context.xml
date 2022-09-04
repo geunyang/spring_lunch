@@ -37,6 +37,7 @@
 		
 		<sec:intercept-url pattern="/admin/**" access="isAuthenticated() AND hasRole('ROLE_ADMIN')"/>
 		<sec:intercept-url pattern="/" access="permitAll"/>
+		<sec:intercept-url pattern="/detail/menu" access="permitAll"/>
 		<sec:intercept-url pattern="/static/**" access="permitAll"/>
 		
 		<sec:form-login login-page="/user/login?error=LOGIN_NEED" login-processing-url="/user/login" username-parameter="username" password-parameter="password"/>

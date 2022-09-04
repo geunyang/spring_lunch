@@ -44,22 +44,22 @@ nav li {
 	padding: 16px 12px;
 }
 
-nav a , .logout {
-   text-decoration: none;
-   color: inherit;
-   magin: 5px 0;
-   padding: 0 12px;
-   border : none;
-   border-bottom: 3px solid transparent;
-   transition: 1s;
+nav a, .logout {
+	text-decoration: none;
+	color: inherit;
+	magin: 5px 0;
+	padding: 0 12px;
+	border: none;
+	border-bottom: 3px solid transparent;
+	transition: 1s;
 }
 
 nav a {
-padding-bottom: 2px;
+	padding-bottom: 2px;
 }
 
 nav a:hover, .logout:hover {
-   border-bottom: 3px solid yellow
+	border-bottom: 3px solid yellow
 }
 
 nav li:nth-of-type(2) {
@@ -161,8 +161,23 @@ footer {
 					<article class="welcome">
 						<h1>운암중학교 2022년 2학기 중식 식단표</h1>
 						<sec:authorize access="isAnonymous()">
-							<p>별점을 남기려면 로그인 해 주세요</p>
+							<p>로그인 후 메뉴에 별점을 남길수 있습니다</p>
 						</sec:authorize>
+
+						<form method="POST">
+							<div>
+								<label>교육청코드</label> <input name="sc_num">
+							</div>
+							<div>
+								<label>학교명</label> <input name="sc_num">
+							</div>
+							<div>
+								<label>조회 일자</label> <input name="sdate"> ~ <input
+									name="edate">
+							</div>
+							<button>검색</button>
+						</form>
+
 						<table class="LUNCHS w3-table-all w3-margin">
 							<tr>
 								<th>날짜</th>
