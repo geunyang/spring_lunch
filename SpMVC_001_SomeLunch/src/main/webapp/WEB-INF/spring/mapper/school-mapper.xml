@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ballza.lunch.persistance.UserDao">
+
+	<select id="selectAll" resultType="SearchVO">
+		select * from tbl_sclunch
+	</select>
+
+
+	<select id="findById">
+	</select>
+
+	<insert id="insert">
+	</insert>
+
+	<update id="update"></update>
+
+	<delete id="delete"></delete>
+
+	<select id="create_user_table">
+		create table if not exists tbl_users (
+			sc_ecode CHAR(3) NOT NULL,
+			sc_ename VARCHAR(50) NOT NULL,
+			sc_code CHAR(7) PRIMARY KEY,
+			sc_name VARCHAR(125) NOT NULL
+		)
+	</select>
+
+
+</mapper> 
