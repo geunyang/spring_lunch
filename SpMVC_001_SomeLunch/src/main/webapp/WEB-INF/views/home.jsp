@@ -165,6 +165,7 @@ footer {
 						</sec:authorize>
 
 						<form method="POST">
+						<input name="${_csrf.parameterName }" value="${_csrf.token}"/>
 							<div>
 								<label>교육청코드</label> <input name="sc_num">
 							</div>

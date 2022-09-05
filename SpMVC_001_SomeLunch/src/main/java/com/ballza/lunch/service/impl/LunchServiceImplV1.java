@@ -45,7 +45,7 @@ public class LunchServiceImplV1 implements LunchService{
 			encodeParams += "=1000";
 			
 			encodeParams += "&" + URLEncoder.encode("ATPT_OFCDC_SC_CODE","UTF-8");
-			encodeParams += "=" + search.getSc_code();
+			encodeParams += "=F10";
 			
 			encodeParams += "&" + URLEncoder.encode("SD_SCHUL_CODE","UTF-8");
 			encodeParams += "=" + search.getSc_num();

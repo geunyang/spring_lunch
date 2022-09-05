@@ -37,10 +37,16 @@ public class HomeController {
 		return "home";
 	}
 	*/
-	
+	/*
+	 * Spring security 가 적용된 프로젝트에서는
+	 * form method=POST 로 전송할떄 반드시 token 이 필요
+	 * 없을시 403 오류
+	 * <input name="${_csrf.parameterName }" value="${_csrf.token}"/>
+	 */
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		return "home";
+		return null;
 	}
 	
 

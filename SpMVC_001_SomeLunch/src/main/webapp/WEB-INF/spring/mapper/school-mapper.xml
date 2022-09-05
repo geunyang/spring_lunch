@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ballza.lunch.persistance.UserDao">
+<mapper namespace="com.ballza.lunch.persistance.SclunchDao">
 
 	<select id="selectAll" resultType="SearchVO">
 		select * from tbl_sclunch
@@ -20,8 +20,8 @@
 
 	<delete id="delete"></delete>
 
-	<select id="create_user_table">
-		create table if not exists tbl_users (
+	<select id="create_sclunch_table">
+		create table if not exists tbl_sclunch (
 			sc_ecode CHAR(3) NOT NULL,
 			sc_ename VARCHAR(50) NOT NULL,
 			sc_code CHAR(7) PRIMARY KEY,
